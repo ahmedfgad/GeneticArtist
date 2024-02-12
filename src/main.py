@@ -2,7 +2,8 @@ import toml
 from pathlib import Path
 from pydantic import ValidationError
 import genetic_artist_config
-
+import cv2
+import os
 
 def interrupt_program(before_exit=None):
     print("Interrupted!")
@@ -21,7 +22,7 @@ try:
     import cli
     import signal
     import cv2 as cv
-    from multiprocessing import Process, Queue, Event
+    from multiprocessing import Process, Queue
     from genetic_artist import GeneticArtist, GeneticArtistException
 except KeyboardInterrupt:
     interrupt_program()
@@ -52,6 +53,8 @@ def run_genetic_artist(genetic_artist: GeneticArtist, image_queue: Queue = None,
 
     for iteration in range(cli.ARGS.ITERATIONS):
         genetic_artist.draw_stroke()
+        #### Save the most recent image after drawing the latest stroke.
+        # cv2.imwrite(os.path.join(os.getcwd(), 'progress/test_' + str(iteration) + '.jpg'), genetic_artist._canvas_img)
 
         if verbose:
             print("Stroke number %d finished" % iteration)
@@ -96,7 +99,9 @@ def main():
 
     # Create the Genetic Artist
     try:
-        genetic_artist = GeneticArtist(cli.ARGS.TARGET_IMG_FILE, cli.ARGS.STROKE_IMG_DIR, config,
+        genetic_artist = GeneticArtist(cli.ARGS.TARGET_IMG_FILE, 
+                                       cli.ARGS.STROKE_IMG_DIR, 
+                                       config,
                                        canvas_img_path=cli.ARGS.CANVAS_IMG_FILE)
     except GeneticArtistException as exception:
         print(exception.message)
@@ -112,7 +117,9 @@ def main():
         display_process.start()
 
         try:
-            run_genetic_artist(genetic_artist, image_queue=image_queue, verbose=cli.ARGS.VERBOSE)
+            run_genetic_artist(genetic_artist, 
+                               image_queue=image_queue, 
+                               verbose=cli.ARGS.VERBOSE)
             store_genetic_artist_result(genetic_artist, cli.ARGS.OUTPUT_FILE, verbose=cli.ARGS.VERBOSE)
         except KeyboardInterrupt:
             def interrupt_func():
@@ -122,6 +129,8 @@ def main():
 
                 store_genetic_artist_result(genetic_artist, cli.ARGS.OUTPUT_FILE, verbose=cli.ARGS.VERBOSE)
 
+            # If the optional argument timeout is None (the default), the method blocks until the process whose join() method is called terminates.
+            # https://docs.python.org/3/library/multiprocessing.html#multiprocessing.Process.join
             interrupt_program(interrupt_func)
 
         if cli.ARGS.VERBOSE:

@@ -106,7 +106,10 @@ class PooledGA(pygad.GA):
 
 
 class GeneticArtist:
-    def __init__(self, target_img_path: str, stroke_img_dir_path: str, config: genetic_artist_config.Configuration, canvas_img_path: str = None):
+    def __init__(self, target_img_path: str, 
+                 stroke_img_dir_path: str, 
+                 config: genetic_artist_config.Configuration, 
+                 canvas_img_path: str = None):
         # Define instance variables
         self._target_img: np.array
         self._canvas_img: np.array
@@ -140,7 +143,8 @@ class GeneticArtist:
             'type': range(0, len(self._stroke_img_list)),
             'xPos': range(0, self._target_img.shape[1]),
             'yPos': range(0, self._target_img.shape[0]),
-            'scale': {'low': 0.1, 'high': 1.0},
+            # 'scale': {'low': 0.1, 'high': 1.0},
+            'scale': {'low': 0.01, 'high': 1.0},
             'angle': {'low': 0.0, 'high': 360.0},
         }
         self._init_gene_tables(genes)

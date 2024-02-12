@@ -25,9 +25,9 @@
 
 ## How to Use
 
-To run this program you will need [Python 3](https://www.python.org/) with [pip](https://pypi.org/project/pip/) installed.
+To run this program you will need [Python 3](https://www.python.org) with [pip](https://pypi.org/project/pip) installed.
 
-1. Clone this repository or [download](https://github.com/Tikitikitikidesuka/GeneticArtist/archive/refs/heads/main.zip) it instead:
+1. Clone this repository or [download](https://github.com/ahmedfgad/GeneticArtist/archive/refs/heads/main.zip) it instead:
 
 ```shell
 git clone https://github.com/Tikitikitikidesuka/GeneticArtist.git
@@ -87,9 +87,8 @@ python src/main.py --target examples/targets/moon.jpg \
 
 This will produce a beautiful painting like the one shown below:
 
-<p align="center">
-    <img src="examples/outputs/moon0256.png" />
-</p>
+![](examples/outputs/moon0256.png)
+
 
 ### Lake Landscape
 
@@ -107,9 +106,26 @@ python src/main.py --target examples/targets/lake.jpg \
 
 The result will look something like this:
 
-<p align="center">
-    <img src="examples/outputs/lake0256.png" />
-</p>
+![](examples/outputs/lake0256.png)
+
+## Monaliza
+
+Use a canvas of the same size as the image. The used Monaliza image size is `512x512` and so the canvas size. Use this [online tool](https://www12.lunapic.com/editor/?action=blank) to create blank images.
+
+```shell
+python src/main.py --target examples/targets/monaliza.jpg ^
+                   --strokes examples/strokes/ ^
+                   --canvas examples/canvases/white512.jpg ^
+                   --config examples/configs/high_quality.toml ^
+                   --iterations 6500 ^
+                   --output outputs/monaliza.png ^
+                   --verbose
+```
+
+This is the output.
+
+![](examples/outputs/monaliza6500.jpg)
+
 
 Feel free to experiment with different target images, strokes, and canvases to see what unique creations you can come up with!
 
@@ -118,13 +134,17 @@ Feel free to experiment with different target images, strokes, and canvases to s
 This project wouldn't be possible without the following open source packages:
 
 * **[PyGAD](https://pygad.readthedocs.io/en/latest/)** to power the image recreation process in our program.
-* **[OpenCV](https://opencv.org/)** and **[Numpy](https://numpy.org/)** to handle the image processing and manipulation tasks.
+* **[OpenCV](https://opencv.org/)** and **[Numpy](https://numpy.org/)** to handle the image processing and manipulation tasks. Make sure to install [OpenCV-Contrib](https://pypi.org/project/opencv-contrib-python).
 * **[Numba](https://numba.pydata.org/)** to accelerate the custom image processing functions.
 
 The example images are provided by [Pixabay](https://pixabay.com/):
 
-* ***lake.jpg*** image by <a href="https://pixabay.com/users/jplenio-7645255/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7644166">Joe</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=7644166">Pixabay</a>
-* ***moon.jpg*** image by <a href="https://pixabay.com/users/kienvirak-11003985/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4855256">kien virak</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4855256">Pixabay</a>
+* [lake.jpg](https://pixabay.com/photos/landscape-nature-forest-sunset-4855256) image by [Joe](https://pixabay.com/users/jplenio-7645255) from Pixabay.
+* [moon.jpg](https://pixabay.com/fr/photos/lac-le-coucher-du-soleil-for%C3%AAt-7644166/) image by [jplenio](https://pixabay.com/fr/users/jplenio-7645255) from Pixabay.
+* [landscape.jpg](https://pixabay.com/photos/lake-nature-travel-exploration-6701636) image by [ELG21](https://pixabay.com/users/elg21-3764790/) from Pixabay.
+* [maldives.jpg](https://pixabay.com/photos/landscape-ocean-beach-sunset-4354117) image by [ELG21](https://pixabay.com/users/elg21-3764790/) from Pixabay.
+
+This is in addition to the Monaliza image.
 
 ## License
 
