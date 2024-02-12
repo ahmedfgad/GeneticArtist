@@ -30,7 +30,7 @@ To run this program you will need [Python 3](https://www.python.org) with [pip](
 1. Clone this repository or [download](https://github.com/ahmedfgad/GeneticArtist/archive/refs/heads/main.zip) it instead:
 
 ```shell
-git clone https://github.com/Tikitikitikidesuka/GeneticArtist.git
+git clone https://github.com/ahmedfgad/GeneticArtist.git
 ```
 
 2. Go into the repository directory:
@@ -148,4 +148,4 @@ This is in addition to the Monaliza image.
 
 ## License
 
-_Genetic Artist_ is distributed under the MIT License. See [`LICENSE.md`](https://github.com/Tikitikitikidesuka/GeneticArtist/blob/168171a1d6d329c7f488cee31380a57f945ed343/LICENSE.md) for more information.
+_Genetic Artist_ is distributed under the MIT License. See [`LICENSE.md`](https://github.com/ahmedfgad/GeneticArtist/blob/main/LICENSE.md) for more information.
